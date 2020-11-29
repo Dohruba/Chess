@@ -1,0 +1,92 @@
+Sorry that this is in spanish... I´ll update it later
+This document describes the conditions for each kind of piece to be able to move properly around the table.
+
+
+Peon movimiento
+
+posibilidades 4
+
+frente 1
+checa si está vacio
+
+diagonal i
+checa si el numero es mayor, que el de hasta la derecha de su fila
+checa si está vacio
+
+diagonal r
+checa si el numero es menor que el de hasta la izq de la fila que sigue (Dos filas adelante)
+
+doble
+checa si está en la fila 2
+
+
+
+Torre
+movimientos 3
+
+horizontal
+poner máximo y minimo con div 8 
+(3a fila, segundo cuadro = 17, 17  div 8 = 2 => min = 8*2 = 16, max = 8*3-1 = 23)
+checar iterativo de posicion a izq, de posicion a der. Detenerse si choca.
+
+vertical
+max 64, min 0. Plantear opciones con +8 -8
+(3a fila, segundo cuadro = 17, 
+restar hasta llegar a negativo
+25
+33
+41
+49
+57
+65xx
+sumar hasta llegar arriba de 64
+9
+1
+-7xx
+
+checar iterativo de posicion arriba, de posicion abajo. Detenerse si choca.
+
+caballito
+posibles movimientos
+frente i +15, atras r -15
+frente r+17, atras i -17
+derecha f +10, izquierda a -10,
+izquierda f +6, derecha a -6
+max64 min0
+
+Empieza una lista con todas esas opciones adentro
+if( xy+8 % 8 == 0 ) primera columna
+	quita +15, -17, -10, +6
+if( xy+8 % 8 == 1) segunda columna
+	quita +6, -10
+if( xy+8 % 8 == 6 ) 7a columna
+	quita +10, -6
+if( xy+8 % 8 == 7) 8a columna
+	quita -15, +17, +10, -6
+
+if (xy div 8 ==0 ) primera fila
+	quita -6,-10,-15,-17
+if (xy div 8 ==1 ) segunda fila
+	quita -15,-17
+if (xy div 8 ==6 ) 7a fila
+	quita  +15, +17
+if (xy div 8 ==7 ) 8a fila	
+	quita +6, +10, +15, +17
+
+bishop
+checar en que posicion está coluna y fila
+de ahí, se saca el numero de chequeos que se pueden hacer iterativos en cada direccion.
+de xy,  hay, 8-columna a la derecha
+de xy, hay columna -1 a la izq
+de xy, hay 8-fila a frente
+de xy, hay fila -1 abajo
+
+para cada diagonal, escoger el numero menor como máximo
+
+detenerse si topa
+
+
+
+
+
+
