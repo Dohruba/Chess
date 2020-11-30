@@ -34,8 +34,10 @@ public class Knight extends ChessPieceImpl{
     // 8 cases are interesting, when the knight is on a limit or one space from it, on the four sides.
 
     /**
-     * Depending on the column and row where the knight is, some indexes from theOpenSpaces will be removed.
+     * Depending on the column and row where the knight is, some indexes from the 8 Open Spaces will be returned to later delete from the
+     * available options.
      * This method specifically, deals with the limitations on columns
+     * The row limitations will be handled on a second method
      * @param column    position x
      * @param row       position y
      */
@@ -47,13 +49,7 @@ public class Knight extends ChessPieceImpl{
                 for (int i = 0; i < 7; i+=2){
                     removeThis.set(i,7-i);
                 }
-                /*
-                removeThis.set(0,7);
-                removeThis.set(2,5);
-                removeThis.set(4,3);
-                removeThis.set(6,1);
-                //index value
-                 */
+
                 rowCheck(row, removeThis);
                 break;
             case 1:
@@ -110,6 +106,11 @@ public class Knight extends ChessPieceImpl{
     }
 
 
+    /**
+     * Adds
+     * @param removeThis
+     * @param i
+     */
     void CheckAndAdd(ArrayList<Integer> removeThis, int i){
         if (!removeThis.contains(i)) removeThis.add(i, 7-i);
     }
