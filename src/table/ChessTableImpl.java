@@ -1,13 +1,18 @@
 package table;
 
 import pieces.ChessPieceImpl;
+import pieces.ChessPieceSymbols;
+import pieces.Pawn;
 import player.PlayerColor;
 
 public class ChessTableImpl {
     public static ChessPieceImpl[] piecesOnTable = new ChessPieceImpl[64];
 
-    public void setTable(PlayerColor playerPlayerColor){
-
+    public void setTableFirstTime(PlayerColor playerPlayerColor){
+        piecesOnTable[8]= new Pawn(ChessTableWidth.A,1,PlayerColor.white, ChessPieceSymbols.P);
+    }
+    public void resetTable(){
+        //Print table. In appear(ChessPieceImpl) the new  positions for the pieces are fixed. Simply print new.
     }
 }
 

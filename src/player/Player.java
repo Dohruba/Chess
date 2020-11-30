@@ -6,10 +6,12 @@ public interface Player {
     //Connection Stuff
     /**
      * the player can start a connection stating if he/she is going to be a server or client
-     * @param type
-     * @param port
+     * @param type Player wants to be server or client
+     * @param port Port to be used
+     * @param name User name
      */
-    void connect(ServerOrClient type, int port);
+    void connect(ServerOrClient type, int port, String name);
+
 
 
 
@@ -17,6 +19,8 @@ public interface Player {
     /**
      * The player changes the coordinates of the piece in the first given coordinates into the second one
      * as long as the second coordinates are one of the available in the pieces list
+     * If after your move, one of the open coordinates for the rival is your king,
+     * restart turn, self check is not allowed.
      * @param origin where is is
      * @param destination where it should end
      */
@@ -43,4 +47,13 @@ public interface Player {
      */
     void promote(ChessPieceTypes type, ChessPieceTypes newType);
 
+    /**
+     * Lets the player choose a color, if it is not yet taken
+     * @param color What color is desired
+     * @param name  user name
+     * @throws GameException When both colors are taken. Third attempt in a two player game
+     * @throws StatusException
+     * @return selected color
+     */
+    PlayerColor chooseColor(String name, PlayerColor color) throws GameException, StatusException;
 }

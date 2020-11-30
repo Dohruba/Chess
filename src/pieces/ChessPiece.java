@@ -12,7 +12,7 @@ public interface ChessPiece {
      * Saves, for the particular piece, it´s possible next coordinates.
      * With this, "check" can be done.
      *
-     * It works bt giving the piece their respective set of moves, no matter the position and then removing the moves from the list that
+     * It works by giving the piece their respective set of moves, no matter the position and then removing the moves from the list that
      * would not be possible, taking the position in account.
      * @return The list of available moves.
      */
@@ -29,10 +29,11 @@ public interface ChessPiece {
      * If it is the king, the game is over. Status = checkmate
      * @param coordinates Where a piece is going to be removed.
      */
-    void dieDramatically(int coordinates);
+    void BeRemoved(int coordinates);
 
     /**
      * If one of the open coordinates for the next turn is the rival´s king,
+     *
      * @return Check
      *
      */

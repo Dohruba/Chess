@@ -62,11 +62,13 @@ public class ChessPieceImpl implements ChessPiece{
         if (openCoordinates().contains(destination)) {
             if ( destinationSquarePiece == null) {
                 setActualCoordinates(destination);
-
+                destinationSquarePiece = this;
             } else if (destinationSquarePiece.getColor() != color) {
                 ChessPieceSymbols pieceToRemove = destinationSquarePiece.getSymbol();
-                dieDramatically(destination);
+                BeRemoved(destination);
                 setActualCoordinates(destination);
+                destinationSquarePiece = this;
+
                 if ( pieceToRemove == ChessPieceSymbols.k || pieceToRemove == ChessPieceSymbols.K){
                     //End game, Checkmate
                 }
@@ -78,7 +80,7 @@ public class ChessPieceImpl implements ChessPiece{
     }
 
     @Override
-    public void dieDramatically(int coordinates) {
+    public void BeRemoved(int coordinates) {
         ChessTableImpl.piecesOnTable[coordinates] = null;
     }
 

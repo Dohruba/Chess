@@ -7,10 +7,17 @@ import table.ChessTableWidth;
 import java.util.ArrayList;
 
 public class Pawn extends ChessPieceImpl{
+
+
     public Pawn(ChessTableWidth FirstCoordinatex, int FirstCoordinatey, PlayerColor color, ChessPieceSymbols symbol) {
         super(FirstCoordinatex, FirstCoordinatey, color, symbol);
 
     }
+/*
+If i understand correctly, the inheritance will allow me to create Pawns (or any other piece), which inherit the methods and fields from ChesspieceImpl.
+All except the one that has to be overridden for each kind of piece, as they have different behaviors on the borad.
+ */
+
 
     @Override
     public ArrayList<Integer> openCoordinates(){
