@@ -63,12 +63,29 @@ public class PlayerTests {
     }
 
     @Test
-    public void connectTest1(){
+    public void goodCconnectTest1(){
         PlayerImpl player = this.getPlayer();
 
         player.connect(ServerOrClient.SERVER, PORT, ALICE );
         ServerOrClient aliceType = player.getRol();
 
         Assert.assertEquals(ServerOrClient.SERVER,aliceType);
+    }
+
+    @Test
+    public void goodConnectTest2(){
+        PlayerImpl player = this.getPlayer();
+
+        player.connect(ServerOrClient.SERVER, PORT, ALICE);
+        //Open connection and wait
+        ServerOrClient aliceType = player.getRol();
+
+        player.connect(ServerOrClient.CLIENT, PORT, BOB);
+        //Connect to server
+        ServerOrClient bobType = player.getRol();
+
+        Assert.assertEquals(ServerOrClient.SERVER,aliceType);
+        Assert.assertEquals(ServerOrClient.CLIENT,bobType);
+        Assert.assertEquals(PlayerStatus.CONNECTED,player.getStatus());
     }
 }

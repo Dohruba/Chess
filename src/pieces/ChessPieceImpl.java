@@ -97,7 +97,7 @@ public class ChessPieceImpl implements ChessPiece{
                 if (color == PlayerColor.white){
                     System.out.println("on black.");
                 } else System.out.print("on white.");
-                return PlayerStatus.Check;
+                return PlayerStatus.CHECK;
             }
         }
         return PlayerStatus.Normal;

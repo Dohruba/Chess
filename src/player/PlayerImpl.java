@@ -3,6 +3,22 @@ package player;
 import pieces.ChessPieceTypes;
 
 public class PlayerImpl implements Player{
+    private String name;
+    private ServerOrClient rol;
+    private int connectionPort;
+    private PlayerColor PlayerColor;
+    private boolean itsMyTurn;
+    private static PlayerStatus status;
+
+    public PlayerStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PlayerStatus status) {
+        this.status = status;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -42,12 +58,6 @@ public class PlayerImpl implements Player{
     public void setItsMyTurn(boolean itsMyTurn) {
         this.itsMyTurn = itsMyTurn;
     }
-
-    private String name;
-    private ServerOrClient rol;
-    private int connectionPort;
-    private PlayerColor PlayerColor;
-    private boolean itsMyTurn;
 
 
     @Override
