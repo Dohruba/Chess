@@ -19,8 +19,6 @@ public interface Player {
     /**
      * The player changes the coordinates of the piece in the first given coordinates into the second one
      * as long as the second coordinates are one of the available in the pieces list
-     * If after your move, one of the open coordinates for the rival is your king,
-     * restart turn, self check is not allowed.
      * @param origin where is is
      * @param destination where it should end
      */
