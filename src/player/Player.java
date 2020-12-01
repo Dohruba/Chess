@@ -1,6 +1,7 @@
 package player;
 
 import pieces.ChessPieceTypes;
+import tcp.ConnectionException;
 
 public interface Player {
     //Connection Stuff
@@ -10,40 +11,32 @@ public interface Player {
      * @param port Port to be used
      * @param name User name
      */
-    void connect(ServerOrClient type, int port, String name);
+    void connect(ServerOrClient type, int port, String name) throws ConnectionException;
 
 
 
 
     //Game Stuff
     /**
+     * Ask the player from where to where should the piece move
      * The player changes the coordinates of the piece in the first given coordinates into the second one
      * as long as the second coordinates are one of the available in the pieces list
-     * @param origin where is is
-     * @param destination where it should end
      */
-    void move(String origin, String destination);
-
-
-    /**
-     * If the player is in a normal state, checked or has lost
-     * It has to be checked if one of the future possible moves of the rival,
-     * lands on the coordinates of the king of the player
-     */
-    PlayerStatus state();
+    void move() throws StatusException, GameException; //Game exception
+//A7 A8
 
 
     /**
      * for Castlin: conditions are going to be interesting to code...
-     * @param moved
+     * @param direction
      */
-    void castlin(boolean moved);
+    void castlin(String direction) throws GameException, StatusException; //Richtung parameter addieren
 
     /**
      *When a pawn gets to the other side y=7 , the player gets the option to promote the piece to another
-     * @param type
+     * @param newType
      */
-    void promote(ChessPieceTypes type, ChessPieceTypes newType);
+    void promote(ChessPieceTypes newType); //Status exception fällt
 
     /**
      * Lets the player choose a color, if it is not yet taken

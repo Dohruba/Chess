@@ -10,5 +10,5 @@ public enum PlayerStatus {
      * Check, the king of the player can be attacked.
      * End, the king of the player has been taken. Game ends
      */
-    CONNECTED,START,ACTIVE_P1,ACTIVE_P2, CHECK, END
+    CONNECTING,CHOOSING,START,ACTIVE_P1,ACTIVE_P2, END
 }

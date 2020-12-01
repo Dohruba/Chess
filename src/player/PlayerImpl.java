@@ -10,7 +10,7 @@ public class PlayerImpl implements Player{
     private boolean itsMyTurn;
     private static PlayerStatus status;
 
-    public PlayerStatus getStatus() {
+    public static PlayerStatus getStatus() {
         return status;
     }
 
@@ -66,22 +66,17 @@ public class PlayerImpl implements Player{
     }
 
     @Override
-    public void move(String origin, String destination) {
+    public void move() {
 
     }
 
     @Override
-    public PlayerStatus state() {
-        return null;
-    }
-
-    @Override
-    public void castlin(boolean moved) {
+    public void castlin(String direction) {
 
     }
 
     @Override
-    public void promote(ChessPieceTypes type, ChessPieceTypes newType) {
+    public void promote(ChessPieceTypes newType) {
 
     }
 

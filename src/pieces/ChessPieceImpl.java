@@ -1,13 +1,16 @@
 package pieces;
 
 import player.PlayerColor;
+import player.PlayerImpl;
 import player.PlayerStatus;
 import table.ChessTableImpl;
 import table.ChessTableWidth;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
-public class ChessPieceImpl implements ChessPiece{
+public abstract class ChessPieceImpl implements ChessPiece{
     protected int actualCoordinates;
     protected PlayerColor color;
     protected ChessPieceSymbols symbol;
@@ -39,7 +42,7 @@ public class ChessPieceImpl implements ChessPiece{
 
 //Constructor
     public ChessPieceImpl(ChessTableWidth FirstCoordinatex, int FirstCoordinatey, PlayerColor color, ChessPieceSymbols symbol){
-        int x = FirstCoordinatex.getValue()     ;
+        int x = FirstCoordinatex.getValue();
         int y = FirstCoordinatey*10;
         setActualCoordinates(x+y);
         setColor(color);
@@ -48,10 +51,7 @@ public class ChessPieceImpl implements ChessPiece{
 
 
     @Override
-    public ArrayList<Integer> openCoordinates() {
-        //HOne override for each kind of piece
-        return null;
-    }
+    public abstract ArrayList<Integer> openCoordinates();
 
     @Override
     public void appear(int desiredDestination) {
@@ -76,7 +76,8 @@ public class ChessPieceImpl implements ChessPiece{
             } else if (destinationSquarePiece.getColor() == color) {
                 //Error, deal with it
             }
-        }
+        }else
+            System.out.print("Move not possible.");
     }
 
     @Override
@@ -97,10 +98,19 @@ public class ChessPieceImpl implements ChessPiece{
                 if (color == PlayerColor.white){
                     System.out.println("on black.");
                 } else System.out.print("on white.");
-                return PlayerStatus.CHECK;
             }
         }
-        return PlayerStatus.Normal;
+        return PlayerImpl.getStatus() == PlayerStatus.ACTIVE_P1 ? PlayerStatus.ACTIVE_P2: PlayerStatus.ACTIVE_P1;
     }
 
+
+    void something(){
+
+        Pattern pattern = Pattern.compile("[A-H1-8]");
+        Scanner scanner = new Scanner(System.in);
+
+        if (scanner.hasNext(pattern)){
+
+        }
+    }
 }

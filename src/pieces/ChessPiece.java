@@ -10,9 +10,8 @@ public interface ChessPiece {
 
     /**
      * Saves, for the particular piece, it´s possible next coordinates.
-     * With this, "check" can be done.
      *
-     * It works by giving the piece their respective set of moves, no matter the position and then removing the moves from the list that
+     * It works by giving the piece their respective set of moves, and then removing the moves from the list that
      * would not be possible, taking the position in account.
      * @return The list of available moves.
      */

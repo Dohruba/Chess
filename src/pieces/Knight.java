@@ -25,9 +25,6 @@ public class Knight extends ChessPieceImpl{
         toReturn.add(-15);//down R
         toReturn.add(-17);//down L
 
-
-
-
     return  toReturn;
     }
 
