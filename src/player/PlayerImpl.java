@@ -14,8 +14,8 @@ public class PlayerImpl implements Player{
         return status;
     }
 
-    public void setStatus(PlayerStatus status) {
-        this.status = status;
+    public static void setStatus(PlayerStatus newStatus) {
+        status = newStatus;
     }
 
 
