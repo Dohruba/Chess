@@ -1,0 +1,9 @@
+Rochade, cambiar el metodo, para que el metodo tome informacion del juego, no como una entrada (Parametro)
+
+
+
+
+Faltan excepciones
+
+
+Trata de mantener un tipo de dato

@@ -18,15 +18,20 @@ public class PlayerTests {
 
 
     private static final String ORIGIN = "A2";
-    private static final int ORIGIN_INT = 8;
+    private static final int ORIGIN_X = 0;
+    private static final int ORIGIN_Y = 1;
+
     private static final String DESTINATION = "A4";
-    private static final int DESTINATION_INT = 32;
+    private static final int DESTINATION_X = 0;
+    private static final int DESTINATION_Y = 2;
 
     private static final Pawn PAWN = new Pawn(ChessTableWidth.A,2, PlayerColor.white, ChessPieceSymbols.P);
 
     private PlayerImpl getPlayer(){//Isolation, einfacher später Änderungen zu machen
         return new PlayerImpl();
     }
+
+
 
     //Create Players
     @Test
@@ -99,6 +104,8 @@ public class PlayerTests {
     }
 
 
+
+
 //Connect
     @Test
     public void goodCconnectTest1() throws ConnectionException, StatusException {
@@ -164,6 +171,8 @@ public class PlayerTests {
         clara.connect(ServerOrClient.CLIENT, PORT, CLARA);
 
     }
+
+
 
 
 
@@ -275,17 +284,24 @@ public class PlayerTests {
         aliceColor = Alice.chooseColor(ALICE,PlayerColor.white);
     }
 
+
+
+
     //Start Rounds
+
+
+    //Move
 
     @Test
     public void goodMoveTest1() throws GameException, StatusException{
         //Pawn moves two places forward
         PlayerImpl player = this.getPlayer();
 
-        ChessTableImpl.piecesOnTable[ORIGIN_INT] = PAWN;
+        ChessTableImpl.piecesOnTable[ORIGIN_X][ORIGIN_Y] = PAWN;
+        //Wirte System input
         player.move();
 
-        Assert.assertEquals(ChessTableImpl.piecesOnTable[DESTINATION_INT].getSymbol(),
+        Assert.assertEquals(ChessTableImpl.piecesOnTable[DESTINATION_X][DESTINATION_Y + 1].getSymbol(),
                 ChessPieceSymbols.P );
     }
 
@@ -294,9 +310,9 @@ public class PlayerTests {
         //Diagonal Right
         PlayerImpl player = this.getPlayer();
 //Write inputs for where the Piece should go
-        ChessTableImpl.piecesOnTable[ORIGIN_INT] = PAWN;
+        ChessTableImpl.piecesOnTable[ORIGIN_X][ORIGIN_Y] = PAWN;
         player.move();
-        Assert.assertEquals(ChessTableImpl.piecesOnTable[DESTINATION_INT+1].getSymbol(),ChessPieceSymbols.P);
+        Assert.assertEquals(ChessTableImpl.piecesOnTable[DESTINATION_X + 1][DESTINATION_Y].getSymbol(),ChessPieceSymbols.P);
 
     }
 

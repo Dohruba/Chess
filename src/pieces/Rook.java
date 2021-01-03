@@ -12,7 +12,7 @@ public class Rook extends ChessPieceImpl{
     }
 
     @Override
-    public ArrayList<Integer> openCoordinates() {
+    public ArrayList<int[]> openCoordinates() {
         //One override for each kind of piece
         ArrayList<Integer> toReturn = new ArrayList<>();
         int[] limits = new int[4];

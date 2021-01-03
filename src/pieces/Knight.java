@@ -10,7 +10,7 @@ public class Knight extends ChessPieceImpl{
         super(FirstCoordinatex, FirstCoordinatey, color, symbol);
     }
 
-    public ArrayList<Integer> openCoordinates() {
+    public ArrayList<int[]> openCoordinates() {
         ArrayList<Integer> toReturn = new ArrayList<Integer>();
         int column = getActualCoordinates() % 8;
         int row = getActualCoordinates() / 8;

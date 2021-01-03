@@ -11,15 +11,15 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public abstract class ChessPieceImpl implements ChessPiece{
-    protected int actualCoordinates;
+    protected int[] actualCoordinates = new int[2];
     protected PlayerColor color;
     protected ChessPieceSymbols symbol;
 
-    public int getActualCoordinates() {
+    public int[] getActualCoordinates() {
         return actualCoordinates;
     }
 
-    public void setActualCoordinates(int actualCoordinates) {
+    public void setActualCoordinates(int[] actualCoordinates) {
         this.actualCoordinates = actualCoordinates;
     }
 
@@ -43,21 +43,21 @@ public abstract class ChessPieceImpl implements ChessPiece{
 //Constructor
     public ChessPieceImpl(ChessTableWidth FirstCoordinatex, int FirstCoordinatey, PlayerColor color, ChessPieceSymbols symbol){
         int x = FirstCoordinatex.getValue();
-        int y = FirstCoordinatey*10;
-        setActualCoordinates(x+y);
+        int y = FirstCoordinatey;
+        setActualCoordinates(new int[]{x,y});
         setColor(color);
         setSymbol(symbol);
     }
 
 
     @Override
-    public abstract ArrayList<Integer> openCoordinates();
+    public abstract ArrayList<int[]> openCoordinates();
 
     @Override
-    public void appear(int desiredDestination) {
+    public void appear(int desiredX, int desiredY) {
 
-        ChessPieceImpl destinationSquarePiece = ChessTableImpl.piecesOnTable[desiredDestination];
-        int destination = destinationSquarePiece.getActualCoordinates();
+        ChessPieceImpl destinationSquarePiece = ChessTableImpl.piecesOnTable[desiredX][desiredY];
+        int[] destination = destinationSquarePiece.getActualCoordinates();
 
         if (openCoordinates().contains(destination)) {
             if ( destinationSquarePiece == null) {
@@ -81,19 +81,19 @@ public abstract class ChessPieceImpl implements ChessPiece{
     }
 
     @Override
-    public void BeRemoved(int coordinates) {
-        ChessTableImpl.piecesOnTable[coordinates] = null;
+    public void BeRemoved(int[] coordinates) {
+        ChessTableImpl.piecesOnTable[coordinates[0]][coordinates[1]] = null;
     }
 
 
     @Override
     public PlayerStatus doCheck() {
-        ArrayList<Integer> destinations = openCoordinates();
+        ArrayList<int[]> destinations = openCoordinates();
 
         for (int i = 0; i < destinations.size(); i++){
-            if ((ChessTableImpl.piecesOnTable[destinations.get(i)].getColor() != color)&& (
-                    ChessTableImpl.piecesOnTable[destinations.get(i)].getSymbol() == ChessPieceSymbols.k ||
-                            ChessTableImpl.piecesOnTable[destinations.get(i)].getSymbol() == ChessPieceSymbols.K)){
+            if ((ChessTableImpl.piecesOnTable[destinations.get(i)[0]][destinations.get(i)[1]].getColor() != color)&& (
+                    ChessTableImpl.piecesOnTable[destinations.get(i)[0]][destinations.get(i)[1]].getSymbol() == ChessPieceSymbols.k ||
+                            ChessTableImpl.piecesOnTable[destinations.get(i)[0]][destinations.get(i)[1]].getSymbol() == ChessPieceSymbols.K)){
                 System.out.print("Check ");
                 if (color == PlayerColor.white){
                     System.out.println("on black.");

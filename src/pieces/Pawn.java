@@ -20,34 +20,39 @@ All except the one that has to be overridden for each kind of piece, as they hav
 
 
     @Override
-    public ArrayList<Integer> openCoordinates(){
-        ArrayList<Integer> toReturn = new ArrayList<Integer>();
-        int front;
-        int diagonalR;
-        int diagonalL;
-        int doubleStep;
+    public ArrayList<int[]> openCoordinates(){
+        ArrayList<int[]> toReturn = new ArrayList<>();
+        int[] front;
+        int[] diagonalR;
+        int[] diagonalL;
+        int[] doubleStep;
 
         //Posible moves
         if (color == PlayerColor.white){
-            front = getActualCoordinates() + 8;
-            diagonalR = getActualCoordinates() + 9;
-            diagonalL = getActualCoordinates() + 7;
-            doubleStep = getActualCoordinates() + 16;
+            front = new int[]{0,1};
+            diagonalR = new int[]{1,1};
+            diagonalL = new int[]{-1,1};
+            doubleStep = new int[]{0,2};
         } else {
-            front = getActualCoordinates() - 8;
-            diagonalR = getActualCoordinates() - 9;
-            diagonalL = getActualCoordinates() - 7;
-            doubleStep = getActualCoordinates() - 16;
+            front = new int[]{0,-1};
+            diagonalR = new int[]{-1,-1};
+            diagonalL = new int[]{1,-1};
+            doubleStep = new int[]{0,-2};
         }
+
+
         //Where is it located?
-        int column = getActualCoordinates() % 8;
-        int row = getActualCoordinates() / 8;
+        int column = getActualCoordinates()[0];
+        int row = getActualCoordinates()[1];
 
         //Conditions
         if ((row < 7 && row > 0)){
-            if (ChessTableImpl.piecesOnTable[front] == null) {
-                toReturn.add(front);
-                if((row == 1) && ChessTableImpl.piecesOnTable[doubleStep] == null) toReturn.add(doubleStep);
+            //front
+            if (ChessTableImpl.piecesOnTable[column][row + front[1]] == null) {
+                addOption(front, getActualCoordinates(), toReturn);
+            //Doublestep
+                if((row == 1) && ChessTableImpl.piecesOnTable[getActualCoordinates()[0]][3] == null)
+                    addOption(doubleStep, getActualCoordinates(), toReturn);
             }
             if (checkDiagonal(diagonalL, column)){
                 toReturn.add(diagonalL);
@@ -62,7 +67,11 @@ All except the one that has to be overridden for each kind of piece, as they hav
     }
 
 
-    boolean checkDiagonal(int direction, int column){
-        return ChessTableImpl.piecesOnTable[direction] != null && ChessTableImpl.piecesOnTable[direction].getColor() != color && column != 0;
+    boolean checkDiagonal(int[] direction, int column){
+            return !(direction[0] == -1 && getActualCoordinates()[0] == 0) || (direction[0] == 1 && getActualCoordinates()[0] == 7) ;
+    }
+
+    void addOption(int[] direction, int[] actualPosition, ArrayList<int[]> toReturn){
+        toReturn.add(new int[]{actualPosition[0] + direction[0], actualPosition[1] + direction[1]});
     }
 }

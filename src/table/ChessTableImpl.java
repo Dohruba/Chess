@@ -5,14 +5,19 @@ import pieces.ChessPieceSymbols;
 import pieces.Pawn;
 import player.PlayerColor;
 
-public class ChessTableImpl {
-    public static ChessPieceImpl[] piecesOnTable = new ChessPieceImpl[64];
+public class ChessTableImpl implements ChessTable{
+    public static ChessPieceImpl[][] piecesOnTable = new ChessPieceImpl[8][8];
 
     public void setTableFirstTime(PlayerColor playerPlayerColor){
-        piecesOnTable[8]= new Pawn(ChessTableWidth.A,1,PlayerColor.white, ChessPieceSymbols.P);
+        piecesOnTable[1][0]= new Pawn(ChessTableWidth.A,1,PlayerColor.white, ChessPieceSymbols.P);
     }
     public void resetTable(){
         //Print table. In appear(ChessPieceImpl) the new  positions for the pieces are fixed. Simply print new.
+    }
+
+    @Override
+    public void create(int[][] arrayOfPieces) {
+
     }
 }
 

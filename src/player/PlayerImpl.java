@@ -68,16 +68,19 @@ public class PlayerImpl implements Player{
     @Override
     public void move() {
 
+        //At the end Change status to other player´s turn and recreate the updated table.
     }
 
     @Override
     public void castlin(String direction) {
 
+        //At the end Change status to other player´s turn and recreate the updated table.
     }
 
     @Override
     public void promote(ChessPieceTypes newType) {
 
+        //Will be called automatically as one pawn comes to the other side
     }
 
     @Override

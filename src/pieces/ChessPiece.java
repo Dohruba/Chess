@@ -15,20 +15,21 @@ public interface ChessPiece {
      * would not be possible, taking the position in account.
      * @return The list of available moves.
      */
-    ArrayList<Integer> openCoordinates();
+    ArrayList<int[]> openCoordinates();
 
     /**
      * Makes the piece appear in the desired coordinates, when possible.
-     * @param desiredDestination Where the piece should go.
+     * @param desiredX Where the piece should go in x.
+     * @param desiredY Where it should go in y.
      */
-    void appear( int desiredDestination);
+    void appear( int desiredX, int desiredY);
 
     /**
      * Removes a piece.
      * If it is the king, the game is over. Status = checkmate
      * @param coordinates Where a piece is going to be removed.
      */
-    void BeRemoved(int coordinates);
+    void BeRemoved(int[] coordinates);
 
     /**
      * If one of the open coordinates for the next turn is the rival´s king,
